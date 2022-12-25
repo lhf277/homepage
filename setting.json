@@ -1,0 +1,51 @@
+{
+    "title": "LiangBursの主页",
+    "description": "May all the beauty be blessed.",
+    "keywords": "LiangBurs,个人主页",
+    "author": "LiangBurs",
+    "logo_img": "./img/icon/logo.png",
+    "logo_text_1": "cnmobile",
+    "logo_text_2": "link",
+    "github": "lhf277",
+    "qq": "2778140181",
+    "email": "liangbusitongx@gmail.com",
+    "bilibili": "439031672",
+    "telegram": "LiangBurs",
+    "link_1": [
+        "https://blog.cnmobile.link",
+        "fa-solid fa-blog",
+        "博客"
+    ],
+    "link_2": [
+        "https://陈睿.icu.cnmobile.link/",
+        "fa-solid fa-cloud",
+        "哔哩漫游Server"
+    ],
+    "link_3": [
+        "https://api.cnmobile.link",
+        "fa-solid fa-music",
+        "随机一图"
+    ],
+    "link_4": [
+        "https://blog.cnmobile.link/MyFriends.html",
+        "fa-solid fa-compass",
+        "友链"
+    ],
+    "link_5": [
+        "https://drive.cnmobile.link",
+        "fa-solid fa-book-bookmark",
+        "CloudDrive"
+    ],
+    "link_6": [
+        "https://cnmobile.link",
+        "fa-solid fa-flask",
+        "2333"
+    ],
+        
+
+
+
+
+    "Copyright_text": "LiangBurs",
+    "beian": "萌ICP备20228004号"
+}
