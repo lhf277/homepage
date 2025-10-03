@@ -1,8 +1,8 @@
 {
     "redirects": [
         {
-            "source": "yukina.ink/*",
-            "destination": "https://www.yukina.ink/:splat",
+            "source": "$host",
+            "destination": "$wwwhost",
             "statusCode": 301
         }
     ],
@@ -27,4 +27,5 @@
         "cacheTtl": 86400
       }
     ]
+
 }
