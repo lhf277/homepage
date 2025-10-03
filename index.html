@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yukina | 迫真混音师 & Non-Professional Developer</title>
+    <link rel="preconnect" href="https://www.yukina.ink" crossorigin>
+    <link rel="preload" as="image" href="https://www.yukina.ink/logo.avif" fetchpriority="high">
+    <link rel="preload" as="font" type="font/woff2" href="https://www.yukina.ink/assets/fonts/fa-solid-900.woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" type="font/woff2" href="https://www.yukina.ink/assets/fonts/fa-brands-400.woff2" crossorigin="anonymous">
+    <style>
+        :root {
+            --google-blue: #1A73E8;
+            --google-red: #EA4335;
+            --google-yellow: #FBBC04;
+            --google-green: #34A853;
+            --google-gray-50: #F8F9FA;
+            --google-gray-100: #F1F3F4;
+            --google-gray-200: #E8EAED;
+            --google-gray-700: #5F6368;
+            --google-gray-900: #202124;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+            --elevation-1: 0 1px 3px rgba(0,0,0,0.12);
+            --elevation-2: 0 2px 6px rgba(0,0,0,0.1);
+            --transition-config: cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        @font-face {
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            font-style: normal;
+            font-display: swap;
+            src: url("https://www.yukina.ink/assets/fonts/fa-solid-900.woff2") format("woff2");
+        }
+
+        @font-face {
+            font-family: "Font Awesome 6 Brands";
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+            src: url("https://www.yukina.ink/assets/fonts/fa-brands-400.woff2") format("woff2");
+        }
+
+        @font-face {
+            font-family: 'Google Sans';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url("/assets/fonts/googlesans-700.woff2") format('woff2');
+        }
+
+        .fas, .fa-solid {
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        }
+        .fab, .fa-brands {
+        font-family: "Font Awesome 6 Brands";
+        font-weight: 400;
+        }
+        .fas, .fab {
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        display: inline-block;
+        }
+
+        .fa-envelope::before {
+        content: "\f0e0";
+        }
+
+        .fa-paper-plane::before {
+        content: "\f1d8";
+        }
+
+        .fa-telegram::before {
+        content: "\f2c6";
+        }
+
+        .fa-weixin::before {
+        content: "\f1d7";
+        }
+
+        .fa-github::before {
+        content: "\f09b";
+        }
+
+        .fa-copy::before {
+        content: "\f0c5";
+        }
+
+        .fa-external-link-alt::before {
+        content: "\f35d";
+        }
+
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        body {
+            font-family: 'Google Sans', 'Roboto', sans-serif;
+            background-color: var(--google-gray-50);
+            color: var(--google-gray-900);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* 头部导航 - 修复动效位置 */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            box-shadow: var(--shadow-sm);
+            padding: 16px 0;
+            z-index: 100;
+            transition: all 0.4s var(--transition-config);
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.92);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--google-blue);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            background-color: var(--google-blue);
+            color: white;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            overflow: hidden;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            position: relative;
+            text-decoration: none;
+            color: var(--google-gray-700);
+            font-weight: 500;
+            font-size: 16px;
+            padding: 8px 0;
+            overflow: hidden;
+            transition: color 0.3s var(--transition-config);
+            display: inline-flex;
+            flex-direction: column;
+        }
+        
+        /* 修复动效位置问题 */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--google-blue);
+            transform: translateX(-100%);
+            transition: transform 0.3s var(--transition-config);
+        }
+        
+        .nav-links a:hover {
+            color: var(--google-blue);
+        }
+        
+        .nav-links a:hover::after {
+            transform: translateX(0);
+        }
+        
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: var(--google-gray-900);
+            transition: all 0.3s var(--transition-config);
+        }
+        
+        /* 主体内容 */
+        .main-content {
+            margin-top: 100px;
+            padding: 40px 0;
+        }
+        
+        .hero {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: var(--google-gray-200);
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+            }
+        }
+        
+        /* 头像动画 - 减小尺寸 */
+        .avatar-container {
+            flex: 0 0 220px; /* 减小头像容器尺寸 */
+            perspective: 1000px;
+            position: relative;
+        }
+        
+        .avatar-shape {
+            width: 200px; /* 减小头像形状尺寸 */
+            height: 200px; /* 减小头像形状尺寸 */
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--google-blue), var(--google-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            animation: rotate-gradient 12s linear infinite;
+            box-shadow: var(--shadow-lg);
+            transform-style: preserve-3d;
+            transition: transform 0.6s var(--transition-config);
+        }
+        
+        .avatar-shape:hover {
+            transform: rotateY(15deg) rotateX(10deg) scale(1.05);
+        }
+        
+        .avatar-shape::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+            animation: rotate 20s linear infinite reverse;
+        }
+        
+        .avatar {
+            width: 180px; /* 减小头像尺寸 */
+            height: 180px; /* 减小头像尺寸 */
+            border-radius: 50%;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            transition: transform 0.6s var(--transition-config);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .avatar:hover {
+            transform: scale(1.05);
+        }
+        
+        .intro-text {
+            flex: 1;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeUp 0.8s var(--transition-config) 0.2s forwards;
+        }
+        
+        @keyframes fadeUp {
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes rotate-gradient {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+        
+        .tagline {
+            font-size: 16px;
+            color: var(--google-blue);
+            font-weight: 500;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+        
+        .tagline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--google-blue);
+            border-radius: 2px;
+        }
+        
+        .name {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+            background: linear-gradient(45deg, var(--google-blue), var(--google-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .description {
+            font-size: 20px;
+            color: var(--google-gray-700);
+            margin-bottom: 24px;
+        }
+        
+        .highlight {
+            display: inline-block;
+            background: linear-gradient(to right, rgba(26, 115, 232, 0.1), transparent);
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-weight: 500;
+            color: var(--google-blue);
+            margin: 8px 0;
+        }
+        
+        /* 联系方式 */
+        .contact-section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 16px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--google-blue);
+            border-radius: 2px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .contact-card {
+            background-color: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s var(--transition-config);
+            border: 1px solid var(--google-gray-200);
+            position: relative;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeUp 0.6s var(--transition-config) forwards;
+        }
+        
+        .contact-card:nth-child(1) { animation-delay: 0.2s; }
+        .contact-card:nth-child(2) { animation-delay: 0.3s; }
+        .contact-card:nth-child(3) { animation-delay: 0.4s; }
+        .contact-card:nth-child(4) { animation-delay: 0.5s; }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--google-blue);
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background-color: var(--google-blue);
+            transition: height 0.4s var(--transition-config);
+        }
+        
+        .contact-card:hover::before {
+            height: 100%;
+        }
+        
+        .contact-card .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .card-email .icon {
+            background-color: rgba(234, 67, 53, 0.1);
+            color: var(--google-red);
+        }
+        
+        .card-telegram .icon {
+            background-color: rgba(26, 115, 232, 0.1);
+            color: var(--google-blue);
+        }
+        
+        .card-wechat .icon {
+            background-color: rgba(51, 204, 51, 0.1);
+            color: #2AAC38;
+        }
+        
+        .card-github .icon {
+            background-color: rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+        
+        .contact-type {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--google-gray-900);
+        }
+        
+        .contact-info {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            word-break: break-all;
+            padding: 10px 0;
+        }
+        
+        .contact-email {
+            color: var(--google-red);
+        }
+        
+        .contact-telegram {
+            color: var(--google-blue);
+        }
+        
+        .contact-wechat {
+            color: #2AAC38;
+        }
+        
+        .contact-github {
+            color: #333;
+        }
+        
+        .contact-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            background-color: transparent;
+            border: 1px solid var(--google-gray-200);
+            border-radius: 24px;
+            color: var(--google-gray-700);
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s var(--transition-config);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-action::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: var(--google-blue);
+            z-index: -1;
+            transition: height 0.3s var(--transition-config);
+        }
+        
+        .contact-action:hover {
+            color: white;
+            border-color: var(--google-blue);
+        }
+        
+        .contact-action:hover::before {
+            height: 100%;
+        }
+        
+        /* 页脚 */
+        .footer {
+            background-color: white;
+            padding: 40px 0 30px;
+            border-top: 1px solid var(--google-gray-200);
+        }
+        
+        .footer-content {
+            text-align: center;
+            color: var(--google-gray-700);
+            font-size: 15px;
+        }
+        
+        .icp-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--google-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .icp-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* 模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            transform: scale(0.9);
+            opacity: 0;
+            animation: scaleUp 0.4s var(--transition-config) forwards;
+        }
+        
+        @keyframes scaleUp {
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--google-gray-700);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s var(--transition-config);
+        }
+        
+        .close-modal:hover {
+            background-color: var(--google-gray-100);
+            color: var(--google-red);
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            color: var(--google-gray-900);
+        }
+        
+        .wechat-id {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 24px 0;
+            color: var(--google-gray-900);
+            background-color: var(--google-gray-50);
+            padding: 20px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+        
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background-color: var(--google-blue);
+            color: white;
+            border: none;
+            border-radius: 24px;
+            font-weight: 500;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s var(--transition-config);
+            margin-top: 16px;
+            font-family: inherit;
+        }
+        
+        .copy-btn:hover {
+            background-color: #0d5abf;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 900px) {
+            .name {
+                font-size: 40px;
+            }
+            
+            .description {
+                font-size: 18px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .avatar-container {
+                flex: 0 0 200px; /* 调整移动端头像容器尺寸 */
+            }
+            
+            .avatar-shape {
+                width: 180px; /* 调整移动端头像形状尺寸 */
+                height: 180px; /* 调整移动端头像形状尺寸 */
+            }
+            
+            .avatar {
+                width: 160px; /* 调整移动端头像尺寸 */
+                height: 160px; /* 调整移动端头像尺寸 */
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: white;
+                padding: 20px 0;
+                flex-direction: column;
+                gap: 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                padding: 15px 30px;
+                border-bottom: 1px solid var(--google-gray-100);
+            }
+            
+            /* 修复移动端导航链接动效位置 */
+            .nav-links a {
+                display: block;
+                height: auto;
+                line-height: normal;
+                padding: 0;
+            }
+            
+            .nav-links a::after {
+                bottom: -8px;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(6px, -6px);
+            }
+            
+            .avatar-container {
+                flex: none;
+                margin-bottom: 40px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .avatar-container {
+                flex: 0 0 160px; /* 进一步减小小屏幕头像容器尺寸 */
+            }
+            
+            .avatar-shape {
+                width: 150px; /* 进一步减小小屏幕头像形状尺寸 */
+                height: 150px; /* 进一步减小小屏幕头像形状尺寸 */
+            }
+            
+            .avatar {
+                width: 130px; /* 进一步减小小屏幕头像尺寸 */
+                height: 130px; /* 进一步减小小屏幕头像尺寸 */
+            }
+            
+            .name {
+                font-size: 34px;
+            }
+            
+            .section-title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <img src="https://www.yukina.ink/logo.avif" fetchpriority="high">
+                    </div>
+                    Yukina
+                </a>
+                
+                <ul class="nav-links">
+                    <li><a href="#about">个人介绍</a></li>
+                    <li><a href="#contact">联系方式</a></li>
+                </ul>
+                
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 主体内容 -->
+    <div class="container">
+        <main class="main-content">
+            <!-- 个人介绍 -->
+            <section class="hero" id="about">
+                <div class="avatar-container">
+                    <div class="avatar-shape">
+                        <div class="avatar">
+                            <img src="https://www.yukina.ink/logo.avif" alt="Yukina 头像" fetchpriority="high" decoding="async" width="180" height="180" style="opacity: 1; transition: opacity 0.5s ease-in-out;">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="intro-text">
+                    <div class="tagline">迫真混音 & 非专业开发者</div>
+                    <h1 class="name">Yukina</h1>
+                    <p class="description">
+                        <span class="highlight">17岁家里蹲高中生</span>
+                        <span class="highlight">会一点HTML</span>
+                        <span class="highlight">non-Professional Developer</span>
+                    </p>
+                </div>
+            </section>
+            
+            <!-- 联系方式 -->
+            <section class="contact-section" id="contact">
+                <h2 class="section-title">联系方式</h2>
+                <div class="contact-grid">
+                    <div class="contact-card card-email">
+                        <div class="icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 class="contact-type">电子邮件</h3>
+                        <div class="contact-info contact-email">hi@yukina.ink</div>
+                        <a href="mailto:hi@yukina.ink" class="contact-action">
+                            <i class="fas fa-paper-plane"></i> 发送邮件
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card card-telegram">
+                        <div class="icon">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <h3 class="contact-type">Telegram</h3>
+                        <div class="contact-info contact-telegram"> @npl8sezFwTyzqehtWcVou3qBb</div>
+                        <a href="https://t.me/npl8sezFwTyzqehtWcVou3qBb" target="_blank" class="contact-action">
+                            <i class="fas fa-external-link-alt"></i> 打开Telegram
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card card-wechat">
+                        <div class="icon">
+                            <i class="fab fa-weixin"></i>
+                        </div>
+                        <h3 class="contact-type">微信</h3>
+                        <div class="contact-info contact-wechat">Yukina_Hisazumi</div>
+                        <a href="javascript:void(0);" class="contact-action" onclick="showWechatModal()">
+                            <i class="fas fa-comment"></i> 查看微信号
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card card-github">
+                        <div class="icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h3 class="contact-type">GitHub</h3>
+                        <div class="contact-info contact-github">@lhf277</div>
+                        <a href="https://github.com/lhf277" target="_blank" class="contact-action">
+                            <i class="fas fa-external-link-alt"></i> 访问Github
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>© 2025 Yukina. 保留所有权利。</p>
+                <a href="https://beian.miit.gov.cn/" class="icp-link">豫ICP备2024075612号-1</a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- 微信模态框 -->
+    <div id="wechatModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeWechatModal()">&times;</button>
+            <h3 class="modal-title">微信联系方式</h3>
+            <p>微信号：</p>
+            <div class="wechat-id">Yukina_Hisazumi</div>
+            <button class="copy-btn" onclick="copyWechat()">
+                <i class="fas fa-copy"></i> 复制微信号
+            </button>
+            <p style="margin-top: 24px; color: var(--google-gray-700);">请备注您的身份信息和来意，谢谢！</p>
+        </div>
+    </div>
+    
+    <script>
+        // 导航菜单切换
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        
+        // 页面滚动效果
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 20) {
+                header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.08)';
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.boxShadow = '0 1px 2px rgba(0, 0, 0, 0.08)';
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.92)';
+            }
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // 关闭移动菜单
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    
+                    window.scrollTo({
+                        top: target.offsetTop - 90,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 微信模态框函数
+        function showWechatModal() {
+            document.getElementById('wechatModal').style.display = 'flex';
+        }
+        
+        function closeWechatModal() {
+            document.getElementById('wechatModal').style.display = 'none';
+        }
+        
+        function copyWechat() {
+            navigator.clipboard.writeText("Yukina_Hisazumi")
+                .then(() => {
+                    alert('微信号已复制到剪贴板！');
+                    closeWechatModal();
+                })
+                .catch(err => {
+                    alert('复制失败，请手动复制');
+                });
+        }
+        
+        // 点击模态框外部关闭
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('wechatModal');
+            if (e.target === modal) {
+                closeWechatModal();
+            }
+        });
+        
+        // 模拟头像预加载效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const avatarImg = document.querySelector('.avatar img');
+            
+            // 头像加载状态模拟
+            avatarImg.style.opacity = '0';
+            avatarImg.style.transition = 'opacity 0.5s ease-in-out';
+            
+            setTimeout(() => {
+                avatarImg.style.opacity = '1';
+            }, 300);
+        });
+    </script>
+</body>
+</html>
