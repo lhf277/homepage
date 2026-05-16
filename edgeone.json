@@ -9,25 +9,12 @@
           },
           {
             "key": "Cache-Control",
-            "value": "max-age=7"
-          }
-        ]
-      },
-      {
-        "source": "/atom.xml",
-        "headers":[
-          {
-            "key": "Access-Control-Allow-Origin",
-            "value": "*"
+            "value": "max-age=7200"
           }
         ]
       }
     ],
     "caches": [
-      {
-        "source": "/atom.xml",
-        "cacheTtl": 0
-      },
       {
         "source": "/*",
         "cacheTtl": 86400
