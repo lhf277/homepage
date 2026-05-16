@@ -4,26 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yukina | 迫真混音师 & Non-Professional Developer</title>
+    <meta name="description" content="Yukina 的个人主页 - 迫真混音师 & Non-Professional Developer">
     <link rel="preload" as="image" href="./logo.avif" fetchpriority="high">
     <link rel="preload" as="font" type="font/woff2" href="./assets/fonts/fa-solid-900.woff2" crossorigin="anonymous">
     <link rel="preload" as="font" type="font/woff2" href="./assets/fonts/fa-brands-400.woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" type="font/woff2" href="./assets/fonts/googlesans-700.woff2" crossorigin="anonymous">
+    <link rel="dns-prefetch" href="https://blog.yukina.ink">
     <style>
         :root {
-            --google-blue: #1A73E8;
-            --google-red: #EA4335;
-            --google-yellow: #FBBC04;
-            --google-green: #34A853;
-            --google-gray-50: #F8F9FA;
-            --google-gray-100: #F1F3F4;
-            --google-gray-200: #E8EAED;
-            --google-gray-700: #5F6368;
-            --google-gray-900: #202124;
-            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
-            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
-            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
-            --elevation-1: 0 1px 3px rgba(0,0,0,0.12);
-            --elevation-2: 0 2px 6px rgba(0,0,0,0.1);
-            --transition-config: cubic-bezier(0.2, 0, 0, 1);
+            --google-blue: #0b57d0;
+            --google-blue-hover: #e8f0fe;
+            --google-red: #ea4335;
+            --google-gray-50: #f8f9fa;
+            --google-gray-100: #f1f3f4;
+            --google-gray-200: #dadce0;
+            --google-gray-700: #5f6368;
+            --google-gray-800: #3c4043;
+            --google-gray-900: #1f1f1f;
         }
 
         @font-face {
@@ -45,776 +42,445 @@
         @font-face {
             font-family: 'Google Sans';
             font-style: normal;
-            font-weight: 700;
+            font-weight: 400 700;
             font-display: swap;
             src: url("./assets/fonts/googlesans-700.woff2") format('woff2');
         }
 
-        .fas, .fa-solid {
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
-        }
-        .fab, .fa-brands {
-        font-family: "Font Awesome 6 Brands";
-        font-weight: 400;
-        }
+        .fas, .fa-solid { font-family: "Font Awesome 6 Free"; font-weight: 900; }
+        .fab, .fa-brands { font-family: "Font Awesome 6 Brands"; font-weight: 400; }
         .fas, .fab {
-        font-style: normal;
-        font-variant: normal;
-        text-rendering: auto;
-        -webkit-font-smoothing: antialiased;
-        display: inline-block;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            display: inline-block;
         }
 
-        .fa-envelope::before {
-        content: "\f0e0";
-        }
+        .fa-envelope::before { content: "\f0e0"; }
+        .fa-paper-plane::before { content: "\f1d8"; }
+        .fa-telegram::before { content: "\f2c6"; }
+        .fa-github::before { content: "\f09b"; }
+        .fa-external-link-alt::before { content: "\f35d"; }
+        .fa-chevron-right::before { content: "\f054"; }
 
-        .fa-paper-plane::before {
-        content: "\f1d8";
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
 
-        .fa-telegram::before {
-        content: "\f2c6";
-        }
-
-        .fa-weixin::before {
-        content: "\f1d7";
-        }
-
-        .fa-github::before {
-        content: "\f09b";
-        }
-
-        .fa-copy::before {
-        content: "\f0c5";
-        }
-
-        .fa-external-link-alt::before {
-        content: "\f35d";
-        }
-
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-        }
-        
         body {
             font-family: 'Google Sans', 'Roboto', sans-serif;
             background-color: var(--google-gray-50);
             color: var(--google-gray-900);
-            line-height: 1.6;
+            line-height: 1.5;
             overflow-x: hidden;
         }
-        
+
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 32px;
         }
-        .logo-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        /* 头部导航 - 修复动效位置 */
+
+        /* ── Header ── */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             background-color: white;
-            box-shadow: var(--shadow-sm);
-            padding: 16px 0;
+            padding: 18px 0;
             z-index: 100;
-            transition: all 0.4s var(--transition-config);
-            backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.92);
+            border-bottom: 1px solid transparent;
+            transition: border-bottom 0.2s;
         }
-        
+
+        .header.scrolled {
+            border-bottom: 1px solid var(--google-gray-200);
+        }
+
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--google-blue);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .logo-icon {
-            background-color: var(--google-blue);
-            color: white;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            overflow: hidden;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            position: relative;
-            text-decoration: none;
+            font-size: 26px;
+            font-weight: 400;
             color: var(--google-gray-700);
-            font-weight: 500;
-            font-size: 16px;
-            padding: 8px 0;
-            overflow: hidden;
-            transition: color 0.3s var(--transition-config);
-            display: inline-flex;
-            flex-direction: column;
-        }
-        
-        /* 修复动效位置问题 */
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background-color: var(--google-blue);
-            transform: translateX(-100%);
-            transition: transform 0.3s var(--transition-config);
-        }
-        
-        .nav-links a:hover {
-            color: var(--google-blue);
-        }
-        
-        .nav-links a:hover::after {
-            transform: translateX(0);
-        }
-        
-        .hamburger {
-            display: none;
-            background: none;
-            border: none;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap: 5px;
-        }
-        
-        .hamburger span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background-color: var(--google-gray-900);
-            transition: all 0.3s var(--transition-config);
-        }
-        
-        /* 主体内容 */
-        .main-content {
-            margin-top: 100px;
-            padding: 40px 0;
-        }
-        
-        .hero {
-            display: flex;
-            gap: 60px;
-            align-items: center;
-            margin-bottom: 80px;
-            position: relative;
-            padding: 40px 0;
-        }
-        
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -40px;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background-color: var(--google-gray-200);
-        }
-        
-        @media (max-width: 768px) {
-            .hero {
-                flex-direction: column;
-            }
-        }
-        
-        /* 头像动画 - 减小尺寸 */
-        .avatar-container {
-            flex: 0 0 220px; /* 减小头像容器尺寸 */
-            perspective: 1000px;
-            position: relative;
-        }
-        
-        .avatar-shape {
-            width: 200px; /* 减小头像形状尺寸 */
-            height: 200px; /* 减小头像形状尺寸 */
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--google-blue), var(--google-green));
+            text-decoration: none;
             display: flex;
             align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            animation: rotate-gradient 12s linear infinite;
-            box-shadow: var(--shadow-lg);
-            transform-style: preserve-3d;
-            transition: transform 0.6s var(--transition-config);
+            gap: 14px;
         }
-        
-        .avatar-shape:hover {
-            transform: rotateY(15deg) rotateX(10deg) scale(1.05);
-        }
-        
-        .avatar-shape::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
-            animation: rotate 20s linear infinite reverse;
-        }
-        
-        .avatar {
-            width: 180px; /* 减小头像尺寸 */
-            height: 180px; /* 减小头像尺寸 */
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
-            position: relative;
-            z-index: 1;
             overflow: hidden;
-            transition: transform 0.6s var(--transition-config);
-            box-shadow: var(--shadow-sm);
         }
-        
-        .avatar img {
+
+        .logo-icon img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        
-        .avatar:hover {
-            transform: scale(1.05);
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            list-style: none;
         }
-        
-        .intro-text {
-            flex: 1;
-            transform: translateY(20px);
-            opacity: 0;
-            animation: fadeUp 0.8s var(--transition-config) 0.2s forwards;
-        }
-        
-        @keyframes fadeUp {
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        @keyframes rotate-gradient {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-        
-        @keyframes rotate {
-            to { transform: rotate(360deg); }
-        }
-        
-        .tagline {
-            font-size: 16px;
-            color: var(--google-blue);
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--google-gray-700);
             font-weight: 500;
-            margin-bottom: 12px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 8px;
+            font-size: 16px;
+            padding: 12px 20px;
+            border-radius: 22px;
+            transition: background-color 0.2s, color 0.2s;
         }
-        
-        .tagline::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 3px;
-            background-color: var(--google-blue);
-            border-radius: 2px;
+
+        .nav-links a:hover {
+            background-color: var(--google-gray-100);
+            color: var(--google-gray-900);
         }
-        
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .hamburger:hover { background-color: var(--google-gray-100); }
+
+        .hamburger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background-color: var(--google-gray-700);
+            transition: all 0.2s;
+        }
+
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* ── Main ── */
+        .main-content {
+            margin-top: 88px;
+            padding: 48px 0;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            display: flex;
+            gap: 48px;
+            align-items: center;
+            margin-bottom: 48px;
+            padding: 48px 0;
+            border-bottom: 1px solid var(--google-gray-200);
+        }
+
+        .avatar-container { flex: 0 0 180px; }
+
+        .avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid var(--google-gray-200);
+            background-color: white;
+            padding: 4px;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .intro-text { flex: 1; }
+
         .name {
             font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 16px;
+            font-weight: 400;
+            color: var(--google-gray-900);
+            margin-bottom: 20px;
             line-height: 1.2;
-            background: linear-gradient(45deg, var(--google-blue), var(--google-green));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
         }
-        
+
         .description {
-            font-size: 20px;
+            font-size: 18px;
             color: var(--google-gray-700);
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
-        
+
         .highlight {
             display: inline-block;
-            background: linear-gradient(to right, rgba(26, 115, 232, 0.1), transparent);
-            padding: 8px 16px;
-            border-radius: 24px;
+            background-color: var(--google-gray-100);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--google-gray-800);
+            margin: 4px 10px 4px 0;
+            border: 1px solid var(--google-gray-200);
+        }
+
+        /* ── Blog Section ── */
+        .blog-section { padding: 0 0 48px; content-visibility: auto; contain-intrinsic-size: 500px; }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 28px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--google-gray-900);
+            margin-bottom: 28px;
+        }
+
+        .section-more {
+            font-size: 16px;
             font-weight: 500;
             color: var(--google-blue);
-            margin: 8px 0;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 22px;
+            transition: background-color 0.2s;
         }
-        
-        /* 联系方式 */
-        .contact-section {
-            padding: 60px 0;
+
+        .section-more:hover { background-color: var(--google-blue-hover); }
+
+        .article-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
-        
-        .section-title {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 40px;
-            position: relative;
-            padding-bottom: 16px;
+
+        .article-card {
+            background-color: white;
+            border-radius: 24px;
+            padding: 28px;
+            border: 1px solid var(--google-gray-200);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.2s ease;
         }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: var(--google-blue);
-            border-radius: 2px;
+
+        .article-card:hover { background-color: var(--google-gray-50); }
+
+        .article-date {
+            font-size: 16px;
+            color: var(--google-gray-700);
+            margin-bottom: 8px;
         }
-        
+
+        .article-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--google-gray-900);
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .article-card:hover .article-title { color: var(--google-blue); }
+
+        .article-summary {
+            font-size: 16px;
+            color: var(--google-gray-700);
+            line-height: 1.5;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .article-loading, .article-error, .article-empty {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--google-gray-700);
+            font-size: 16px;
+            grid-column: 1 / -1;
+        }
+
+        .article-error { color: var(--google-red); }
+
+        /* ── Contact Section ── */
+        .contact-section { padding: 0 0 48px; content-visibility: auto; contain-intrinsic-size: 400px; }
+
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
+            gap: 28px;
         }
-        
+
         .contact-card {
             background-color: white;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.4s var(--transition-config);
+            border-radius: 24px;
+            padding: 36px 28px;
             border: 1px solid var(--google-gray-200);
-            position: relative;
-            overflow: hidden;
-            transform: translateY(20px);
-            opacity: 0;
-            animation: fadeUp 0.6s var(--transition-config) forwards;
+            transition: background-color 0.2s ease;
+            display: flex;
+            flex-direction: column;
         }
-        
-        .contact-card:nth-child(1) { animation-delay: 0.2s; }
-        .contact-card:nth-child(2) { animation-delay: 0.3s; }
-        .contact-card:nth-child(3) { animation-delay: 0.4s; }
-        .contact-card:nth-child(4) { animation-delay: 0.5s; }
-        
-        .contact-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--google-blue);
-        }
-        
-        .contact-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 0;
-            background-color: var(--google-blue);
-            transition: height 0.4s var(--transition-config);
-        }
-        
-        .contact-card:hover::before {
-            height: 100%;
-        }
-        
-        .contact-card .icon {
-            width: 60px;
-            height: 60px;
+
+        .contact-card:hover { background-color: var(--google-gray-50); }
+
+        .contact-card .icon-ring {
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
+            flex-shrink: 0;
         }
-        
-        .card-email .icon {
-            background-color: rgba(234, 67, 53, 0.1);
-            color: var(--google-red);
-        }
-        
-        .card-telegram .icon {
-            background-color: rgba(26, 115, 232, 0.1);
-            color: var(--google-blue);
-        }
-        
-        .card-wechat .icon {
-            background-color: rgba(51, 204, 51, 0.1);
-            color: #2AAC38;
-        }
-        
-        .card-github .icon {
-            background-color: rgba(0, 0, 0, 0.1);
-            color: #333;
-        }
-        
+
+        .card-email .icon-ring  { background-color: #fce8e6; color: var(--google-red); }
+        .card-telegram .icon-ring { background-color: #e8f0fe; color: var(--google-blue); }
+        .card-github .icon-ring { background-color: var(--google-gray-100); color: var(--google-gray-800); }
+
         .contact-type {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--google-gray-900);
-        }
-        
-        .contact-info {
             font-size: 18px;
             font-weight: 500;
-            margin-bottom: 24px;
+            color: var(--google-gray-700);
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--google-gray-900);
+            margin-bottom: 36px;
             word-break: break-all;
-            padding: 10px 0;
         }
-        
-        .contact-email {
-            color: var(--google-red);
-        }
-        
-        .contact-telegram {
-            color: var(--google-blue);
-        }
-        
-        .contact-wechat {
-            color: #2AAC38;
-        }
-        
-        .contact-github {
-            color: #333;
-        }
-        
+
         .contact-action {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 24px;
+            padding: 10px 28px;
             background-color: transparent;
             border: 1px solid var(--google-gray-200);
-            border-radius: 24px;
-            color: var(--google-gray-700);
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.3s var(--transition-config);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .contact-action::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 0;
-            background-color: var(--google-blue);
-            z-index: -1;
-            transition: height 0.3s var(--transition-config);
-        }
-        
-        .contact-action:hover {
-            color: white;
-            border-color: var(--google-blue);
-        }
-        
-        .contact-action:hover::before {
-            height: 100%;
-        }
-        
-        /* 页脚 */
-        .footer {
-            background-color: white;
-            padding: 40px 0 30px;
-            border-top: 1px solid var(--google-gray-200);
-        }
-        
-        .footer-content {
-            text-align: center;
-            color: var(--google-gray-700);
-            font-size: 15px;
-        }
-        
-        .icp-link {
-            display: inline-block;
-            margin-top: 15px;
+            border-radius: 100px;
             color: var(--google-blue);
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
-        .icp-link:hover {
-            text-decoration: underline;
-        }
-        
-        /* 模态框 */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            animation: fadeIn 0.3s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .modal-content {
-            background-color: white;
-            border-radius: 24px;
-            padding: 40px;
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-            transform: scale(0.9);
-            opacity: 0;
-            animation: scaleUp 0.4s var(--transition-config) forwards;
-        }
-        
-        @keyframes scaleUp {
-            to { transform: scale(1); opacity: 1; }
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: var(--google-gray-700);
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s var(--transition-config);
-        }
-        
-        .close-modal:hover {
-            background-color: var(--google-gray-100);
-            color: var(--google-red);
-        }
-        
-        .modal-title {
-            font-size: 24px;
-            font-weight: 500;
-            margin-bottom: 24px;
-            color: var(--google-gray-900);
-        }
-        
-        .wechat-id {
-            font-size: 32px;
-            font-weight: 700;
-            margin: 24px 0;
-            color: var(--google-gray-900);
-            background-color: var(--google-gray-50);
-            padding: 20px;
-            border-radius: 12px;
-            display: inline-block;
-        }
-        
-        .copy-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 28px;
-            background-color: var(--google-blue);
-            color: white;
-            border: none;
-            border-radius: 24px;
             font-weight: 500;
             font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s var(--transition-config);
-            margin-top: 16px;
-            font-family: inherit;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            margin-top: auto;
+            align-self: flex-start;
         }
-        
-        .copy-btn:hover {
-            background-color: #0d5abf;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+
+        .contact-action:hover {
+            background-color: var(--google-blue-hover);
+            border-color: transparent;
         }
-        
-        /* 响应式设计 */
-        @media (max-width: 900px) {
-            .name {
-                font-size: 40px;
-            }
-            
-            .description {
-                font-size: 18px;
-            }
-            
-            .contact-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .avatar-container {
-                flex: 0 0 200px; /* 调整移动端头像容器尺寸 */
-            }
-            
-            .avatar-shape {
-                width: 180px; /* 调整移动端头像形状尺寸 */
-                height: 180px; /* 调整移动端头像形状尺寸 */
-            }
-            
-            .avatar {
-                width: 160px; /* 调整移动端头像尺寸 */
-                height: 160px; /* 调整移动端头像尺寸 */
-            }
+
+        /* ── Footer ── */
+        .footer {
+            padding: 40px 0;
+            text-align: center;
+            color: var(--google-gray-700);
+            font-size: 14px;
+            border-top: 1px solid var(--google-gray-200);
         }
-        
+
+        .icp-link {
+            color: var(--google-gray-700);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        .icp-link:hover {
+            color: var(--google-gray-900);
+            text-decoration: underline;
+        }
+
+        /* ── Responsive ── */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
                 position: absolute;
-                top: 100%;
+                top: 64px;
                 left: 0;
                 right: 0;
-                background-color: white;
-                padding: 20px 0;
+                background: white;
                 flex-direction: column;
-                gap: 0;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                padding: 16px;
+                border-bottom: 1px solid var(--google-gray-200);
             }
-            
-            .nav-links.active {
-                display: flex;
+
+            .nav-links.active { display: flex; }
+
+            .nav-links a { padding: 14px 20px; border-radius: 0; font-size: 16px; }
+
+            .hamburger { display: flex; }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 28px;
             }
-            
-            .nav-links li {
-                padding: 15px 30px;
-                border-bottom: 1px solid var(--google-gray-100);
-            }
-            
-            /* 修复移动端导航链接动效位置 */
-            .nav-links a {
-                display: block;
-                height: auto;
-                line-height: normal;
-                padding: 0;
-            }
-            
-            .nav-links a::after {
-                bottom: -8px;
-            }
-            
-            .hamburger {
-                display: flex;
-            }
-            
-            .hamburger.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-            
-            .hamburger.active span:nth-child(2) {
-                opacity: 0;
-            }
-            
-            .hamburger.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(6px, -6px);
-            }
-            
-            .avatar-container {
-                flex: none;
-                margin-bottom: 40px;
-            }
-            
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
+
+            .avatar-container { flex: none; }
+
+            .name { font-size: 36px; }
+
+            .contact-grid,
+            .article-list { grid-template-columns: 1fr; }
         }
-        
+
         @media (max-width: 480px) {
-            .avatar-container {
-                flex: 0 0 160px; /* 进一步减小小屏幕头像容器尺寸 */
-            }
-            
-            .avatar-shape {
-                width: 150px; /* 进一步减小小屏幕头像形状尺寸 */
-                height: 150px; /* 进一步减小小屏幕头像形状尺寸 */
-            }
-            
-            .avatar {
-                width: 130px; /* 进一步减小小屏幕头像尺寸 */
-                height: 130px; /* 进一步减小小屏幕头像尺寸 */
-            }
-            
-            .name {
-                font-size: 34px;
-            }
-            
-            .section-title {
-                font-size: 26px;
-            }
+            .avatar { width: 140px; height: 140px; }
+            .name { font-size: 32px; }
+            .section-title { font-size: 24px; }
         }
     </style>
 </head>
 <body>
-    <!-- 头部导航 -->
-    <header class="header">
+    <!-- Header -->
+    <header class="header" id="header">
         <div class="container">
             <div class="nav-container">
                 <a href="#" class="logo">
                     <div class="logo-icon">
-                        <img src="./logo.avif" fetchpriority="high">
+                        <img src="./logo.avif" alt="Yukina" fetchpriority="high">
                     </div>
                     Yukina
                 </a>
-                
-                <ul class="nav-links">
+
+                <ul class="nav-links" id="navLinks">
                     <li><a href="#about">个人介绍</a></li>
+                    <li><a href="#blog">博客文章</a></li>
                     <li><a href="#contact">联系方式</a></li>
                 </ul>
-                
-                <button class="hamburger" id="hamburger">
+
+                <button class="hamburger" id="hamburger" aria-label="菜单">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -822,189 +488,198 @@
             </div>
         </div>
     </header>
-    
-    <!-- 主体内容 -->
+
+    <!-- Main -->
     <div class="container">
         <main class="main-content">
-            <!-- 个人介绍 -->
             <section class="hero" id="about">
                 <div class="avatar-container">
-                    <div class="avatar-shape">
-                        <div class="avatar">
-                            <img src="./logo.avif" alt="Yukina 头像" fetchpriority="high" decoding="async" width="180" height="180" style="opacity: 1; transition: opacity 0.5s ease-in-out;">
-                        </div>
+                    <div class="avatar">
+                        <img src="./logo.avif" alt="Yukina 头像" width="172" height="172">
                     </div>
                 </div>
-                
                 <div class="intro-text">
-                    <div class="tagline">迫真混音 & 非专业开发者</div>
                     <h1 class="name">Yukina</h1>
-                    <p class="description">
+                    <p class="description">迫真混音师 / 会一点 HTML</p>
+                    <div>
                         <span class="highlight">18岁家里蹲</span>
-                        <span class="highlight">会一点HTML</span>
-                        <span class="highlight">non-Professional Developer</span>
-                    </p>
+                        <span class="highlight">Non-Professional Developer</span>
+                    </div>
                 </div>
             </section>
-            
-            <!-- 联系方式 -->
+
+            <section class="blog-section" id="blog">
+                <div class="section-header">
+                    <h2 class="section-title">博客文章</h2>
+                    <a href="https://blog.yukina.ink/" target="_blank" rel="noopener" class="section-more">
+                        查看全部 <i class="fas fa-chevron-right" style="font-size:12px;"></i>
+                    </a>
+                </div>
+                <div class="article-list" id="articleList">
+                    <div class="article-loading">加载文章中...</div>
+                </div>
+            </section>
+
             <section class="contact-section" id="contact">
-                <h2 class="section-title">联系方式</h2>
+                <h2 class="section-title">联系信息</h2>
                 <div class="contact-grid">
                     <div class="contact-card card-email">
-                        <div class="icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
+                        <div class="icon-ring"><i class="fas fa-envelope"></i></div>
                         <h3 class="contact-type">电子邮件</h3>
-                        <div class="contact-info contact-email">hi@yukina.ink</div>
+                        <div class="contact-info">hi@yukina.ink</div>
                         <a href="mailto:hi@yukina.ink" class="contact-action">
-                            <i class="fas fa-paper-plane"></i> 发送邮件
+                            发邮件
                         </a>
                     </div>
-                    
+
                     <div class="contact-card card-telegram">
-                        <div class="icon">
-                            <i class="fab fa-telegram"></i>
-                        </div>
+                        <div class="icon-ring"><i class="fab fa-telegram"></i></div>
                         <h3 class="contact-type">Telegram</h3>
-                        <div class="contact-info contact-telegram"> @npl8sezFwTyzqehtWcVou3qBb</div>
-                        <a href="https://t.me/npl8sezFwTyzqehtWcVou3qBb" target="_blank" class="contact-action">
-                            <i class="fas fa-external-link-alt"></i> 打开Telegram
+                        <div class="contact-info">@npl8sezFwTyzqehtWcVou3qBb</div>
+                        <a href="https://t.me/npl8sezFwTyzqehtWcVou3qBb" target="_blank" rel="noopener" class="contact-action">
+                            <i class="fas fa-external-link-alt"></i> 打开链接
                         </a>
                     </div>
-                    
-                    <div class="contact-card card-wechat">
-                        <div class="icon">
-                            <i class="fab fa-weixin"></i>
-                        </div>
-                        <h3 class="contact-type">微信</h3>
-                        <div class="contact-info contact-wechat">Yukina_Hisazumi</div>
-                        <a href="javascript:void(0);" class="contact-action" onclick="showWechatModal()">
-                            <i class="fas fa-comment"></i> 查看微信号
-                        </a>
-                    </div>
-                    
+
                     <div class="contact-card card-github">
-                        <div class="icon">
-                            <i class="fab fa-github"></i>
-                        </div>
+                        <div class="icon-ring"><i class="fab fa-github"></i></div>
                         <h3 class="contact-type">GitHub</h3>
-                        <div class="contact-info contact-github">@lhf277</div>
-                        <a href="https://github.com/lhf277" target="_blank" class="contact-action">
-                            <i class="fas fa-external-link-alt"></i> 访问Github
+                        <div class="contact-info">@lhf277</div>
+                        <a href="https://github.com/lhf277" target="_blank" rel="noopener" class="contact-action">
+                            <i class="fas fa-external-link-alt"></i> 访问主页
                         </a>
                     </div>
                 </div>
             </section>
         </main>
     </div>
-    
-    <!-- 页脚 -->
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <p>© 2025 Yukina. 保留所有权利。</p>
-                <a href="https://beian.miit.gov.cn/" class="icp-link">豫ICP备2024075612号-1</a>
-            </div>
+            <span>&copy; 2025 Yukina.</span>
+            <a href="https://beian.miit.gov.cn/" class="icp-link" target="_blank" rel="noopener">豫ICP备2024075612号-1</a>
         </div>
     </footer>
-    
-    <!-- 微信模态框 -->
-    <div id="wechatModal" class="modal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeWechatModal()">&times;</button>
-            <h3 class="modal-title">微信联系方式</h3>
-            <p>微信号：</p>
-            <div class="wechat-id">Yukina_Hisazumi</div>
-            <button class="copy-btn" onclick="copyWechat()">
-                <i class="fas fa-copy"></i> 复制微信号
-            </button>
-            <p style="margin-top: 24px; color: var(--google-gray-700);">请备注您的身份信息和来意，谢谢！</p>
-        </div>
-    </div>
-    
+
     <script>
-        // 导航菜单切换
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        
-        hamburger.addEventListener('click', () => {
+        var header = document.getElementById('header');
+        var hamburger = document.getElementById('hamburger');
+        var navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', function() {
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
         });
-        
-        // 页面滚动效果
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 20) {
-                header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.08)';
-                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
-            } else {
-                header.style.boxShadow = '0 1px 2px rgba(0, 0, 0, 0.08)';
-                header.style.backgroundColor = 'rgba(255, 255, 255, 0.92)';
+
+        var scrollTicking = false;
+        window.addEventListener('scroll', function() {
+            if (!scrollTicking) {
+                requestAnimationFrame(function() {
+                    header.classList.toggle('scrolled', window.scrollY > 10);
+                    scrollTicking = false;
+                });
+                scrollTicking = true;
             }
-        });
-        
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        }, { passive: true });
+
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
             anchor.addEventListener('click', function(e) {
                 if (this.getAttribute('href') === '#') return;
-                
                 e.preventDefault();
-                
-                const target = document.querySelector(this.getAttribute('href'));
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                var target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    // 关闭移动菜单
-                    hamburger.classList.remove('active');
-                    navLinks.classList.remove('active');
-                    
-                    window.scrollTo({
-                        top: target.offsetTop - 90,
-                        behavior: 'smooth'
-                    });
+                    window.scrollTo({ top: target.offsetTop - 88, behavior: 'smooth' });
                 }
             });
         });
-        
-        // 微信模态框函数
-        function showWechatModal() {
-            document.getElementById('wechatModal').style.display = 'flex';
+
+        function formatDate(dateStr) {
+            var d = new Date(dateStr);
+            return d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
         }
-        
-        function closeWechatModal() {
-            document.getElementById('wechatModal').style.display = 'none';
+
+        function stripHtml(html) {
+            var tmp = document.createElement('div');
+            tmp.innerHTML = html;
+            return tmp.textContent || tmp.innerText || '';
         }
-        
-        function copyWechat() {
-            navigator.clipboard.writeText("Yukina_Hisazumi")
-                .then(() => {
-                    alert('微信号已复制到剪贴板！');
-                    closeWechatModal();
+
+        function truncate(text, maxLen) {
+            if (text.length <= maxLen) return text;
+            return text.slice(0, maxLen).replace(/\s+\S*$/, '') + '...';
+        }
+
+        function renderArticles(entries) {
+            var list = document.getElementById('articleList');
+            if (!entries || entries.length === 0) {
+                list.innerHTML = '<div class="article-empty">还没有文章</div>';
+                return;
+            }
+            var html = '';
+            var max = Math.min(entries.length, 3);
+            for (var i = 0; i < max; i++) {
+                var entry = entries[i];
+                var title = entry.title || '(无标题)';
+                var link = entry.link || 'https://blog.yukina.ink/';
+                var date = entry.published ? formatDate(entry.published) : '';
+                var summary = entry.summary ? truncate(stripHtml(entry.summary), 140) : '';
+                if (!summary && entry.content) {
+                    summary = truncate(stripHtml(entry.content), 140);
+                }
+                html +=
+                    '<a href="' + link + '" target="_blank" rel="noopener" class="article-card">' +
+                        (date ? '<span class="article-date">' + date + '</span>' : '') +
+                        '<span class="article-title">' + title + '</span>' +
+                        (summary ? '<span class="article-summary">' + summary + '</span>' : '') +
+                    '</a>';
+            }
+            list.innerHTML = html;
+        }
+
+        function fetchArticles() {
+            var list = document.getElementById('articleList');
+            fetch('https://blog.yukina.ink/atom.xml')
+                .then(function(res) {
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    return res.text();
                 })
-                .catch(err => {
-                    alert('复制失败，请手动复制');
+                .then(function(xml) {
+                    var parser = new DOMParser();
+                    var doc = parser.parseFromString(xml, 'text/xml');
+                    var errNode = doc.querySelector('parsererror');
+                    if (errNode) throw new Error('XML 解析失败');
+                    var entries = [];
+                    var entryNodes = doc.querySelectorAll('entry');
+                    entryNodes.forEach(function(en) {
+                        var titleEl = en.querySelector('title');
+                        var linkEl = en.querySelector('link[href]') || en.querySelector('link');
+                        var pubEl  = en.querySelector('published') || en.querySelector('updated');
+                        var sumEl  = en.querySelector('summary') || en.querySelector('description');
+                        var contEl = en.querySelector('content');
+                        entries.push({
+                            title: titleEl ? titleEl.textContent : '',
+                            link: linkEl ? (linkEl.getAttribute('href') || linkEl.textContent) : '',
+                            published: pubEl ? pubEl.textContent : '',
+                            summary: sumEl ? sumEl.textContent : '',
+                            content: contEl ? contEl.textContent : ''
+                        });
+                    });
+                    renderArticles(entries);
+                })
+                .catch(function(err) {
+                    list.innerHTML = '<div class="article-error">文章加载失败：' + err.message + '</div>';
                 });
         }
-        
-        // 点击模态框外部关闭
-        window.addEventListener('click', (e) => {
-            const modal = document.getElementById('wechatModal');
-            if (e.target === modal) {
-                closeWechatModal();
-            }
-        });
-        
-        // 模拟头像预加载效果
-        document.addEventListener('DOMContentLoaded', function() {
-            const avatarImg = document.querySelector('.avatar img');
-            
-            // 头像加载状态模拟
+
+        window.addEventListener('DOMContentLoaded', function() {
+            var avatarImg = document.querySelector('.avatar img');
             avatarImg.style.opacity = '0';
-            avatarImg.style.transition = 'opacity 0.5s ease-in-out';
-            
-            setTimeout(() => {
-                avatarImg.style.opacity = '1';
-            }, 300);
+            avatarImg.style.transition = 'opacity .4s ease';
+            requestAnimationFrame(function() { avatarImg.style.opacity = '1'; });
+            fetchArticles();
         });
     </script>
 </body>
