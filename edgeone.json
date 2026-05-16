@@ -12,6 +12,15 @@
             "value": "max-age=7200"
           }
         ]
+      },
+      {
+        "source": "/atom.xml",
+        "headers":[
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          }
+        ]
       }
     ],
     "caches": [
