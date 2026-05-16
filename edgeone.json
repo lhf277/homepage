@@ -25,6 +25,10 @@
     ],
     "caches": [
       {
+        "source": "/atom.xml",
+        "cacheTtl": 0
+      },
+      {
         "source": "/*",
         "cacheTtl": 86400
       }
