@@ -21,6 +21,22 @@
             --google-gray-700: #5f6368;
             --google-gray-800: #3c4043;
             --google-gray-900: #1f1f1f;
+            --surface: #ffffff;
+            --surface-variant: #f8f9fa;
+        }
+
+        [data-theme="dark"] {
+            --google-blue: #a8c7fa;
+            --google-blue-hover: #1a3560;
+            --google-red: #f28b82;
+            --google-gray-50: #1a1a1a;
+            --google-gray-100: #2d2d2d;
+            --google-gray-200: #3c4043;
+            --google-gray-700: #9aa0a6;
+            --google-gray-800: #bdc1c6;
+            --google-gray-900: #e8eaed;
+            --surface: #1f1f1f;
+            --surface-variant: #2d2d2d;
         }
 
         @font-face {
@@ -71,6 +87,7 @@
             color: var(--google-gray-900);
             line-height: 1.5;
             overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .container {
@@ -85,11 +102,11 @@
             top: 0;
             left: 0;
             right: 0;
-            background-color: white;
+            background-color: var(--surface);
             padding: 18px 0;
             z-index: 100;
             border-bottom: 1px solid transparent;
-            transition: border-bottom 0.2s;
+            transition: border-bottom 0.2s, background-color 0.3s;
         }
 
         .header.scrolled {
@@ -127,6 +144,7 @@
 
         .nav-links {
             display: flex;
+            align-items: center;
             gap: 8px;
             list-style: none;
         }
@@ -174,6 +192,61 @@
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
+        /* ── Theme Toggle ── */
+        .theme-toggle-li {
+            display: flex;
+            align-items: center;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--google-gray-700);
+            transition: background-color 0.2s;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover { background-color: var(--google-gray-100); }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .theme-toggle .sun-icon { display: none; }
+        .theme-toggle .moon-icon { display: block; }
+        [data-theme="dark"] .theme-toggle .sun-icon { display: block; }
+        [data-theme="dark"] .theme-toggle .moon-icon { display: none; }
+
+        @media (max-width: 768px) {
+            .theme-toggle-li {
+                padding: 0;
+            }
+
+            .theme-toggle {
+                width: 48px;
+                height: 48px;
+                margin: 4px 0;
+            }
+
+            .theme-toggle svg {
+                width: 22px;
+                height: 22px;
+            }
+        }
+
         /* ── Main ── */
         .main-content {
             margin-top: 88px;
@@ -198,7 +271,7 @@
             border-radius: 50%;
             overflow: hidden;
             border: 1px solid var(--google-gray-200);
-            background-color: white;
+            background-color: var(--surface);
             padding: 4px;
         }
 
@@ -276,7 +349,7 @@
         }
 
         .article-card {
-            background-color: white;
+            background-color: var(--surface);
             border-radius: 24px;
             padding: 28px;
             border: 1px solid var(--google-gray-200);
@@ -336,7 +409,7 @@
         }
 
         .contact-card {
-            background-color: white;
+            background-color: var(--surface);
             border-radius: 24px;
             padding: 36px 28px;
             border: 1px solid var(--google-gray-200);
@@ -362,6 +435,9 @@
         .card-email .icon-ring  { background-color: #fce8e6; color: var(--google-red); }
         .card-telegram .icon-ring { background-color: #e8f0fe; color: var(--google-blue); }
         .card-github .icon-ring { background-color: var(--google-gray-100); color: var(--google-gray-800); }
+
+        [data-theme="dark"] .card-email .icon-ring  { background-color: #3c1a1a; }
+        [data-theme="dark"] .card-telegram .icon-ring { background-color: #1a2a3c; }
 
         .contact-type {
             font-size: 18px;
@@ -429,8 +505,9 @@
                 top: 64px;
                 left: 0;
                 right: 0;
-                background: white;
+                background: var(--surface);
                 flex-direction: column;
+                align-items: stretch;
                 padding: 16px;
                 border-bottom: 1px solid var(--google-gray-200);
             }
@@ -478,6 +555,24 @@
                     <li><a href="#about">个人介绍</a></li>
                     <li><a href="#blog">博客文章</a></li>
                     <li><a href="#contact">联系方式</a></li>
+                    <li class="theme-toggle-li">
+                        <button class="theme-toggle" id="themeToggle" aria-label="切换暗色模式">
+                            <svg class="sun-icon" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="5"/>
+                                <line x1="12" y1="1" x2="12" y2="3"/>
+                                <line x1="12" y1="21" x2="12" y2="23"/>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                                <line x1="1" y1="12" x2="3" y2="12"/>
+                                <line x1="21" y1="12" x2="23" y2="12"/>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                            </svg>
+                            <svg class="moon-icon" viewBox="0 0 24 24">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                            </svg>
+                        </button>
+                    </li>
                 </ul>
 
                 <button class="hamburger" id="hamburger" aria-label="菜单">
@@ -570,6 +665,33 @@
         hamburger.addEventListener('click', function() {
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
+        });
+
+        var themeToggle = document.getElementById('themeToggle');
+        var html = document.documentElement;
+
+        function getTheme() {
+            var saved = localStorage.getItem('theme');
+            if (saved) return saved;
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
+            return 'light';
+        }
+
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+            } else {
+                html.removeAttribute('data-theme');
+            }
+        }
+
+        applyTheme(getTheme());
+
+        themeToggle.addEventListener('click', function() {
+            var current = html.getAttribute('data-theme');
+            var next = current === 'dark' ? 'light' : 'dark';
+            applyTheme(next);
+            localStorage.setItem('theme', next);
         });
 
         var scrollTicking = false;
